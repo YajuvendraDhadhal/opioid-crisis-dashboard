@@ -153,6 +153,7 @@ def main():
         ax.text(b + (0.02 if b >= 0 else -0.02), i, f"β={b:.2f}, p={p:.3f}", va="center",
                 ha="left" if b >= 0 else "right", fontsize=8, color=NAVY)
     ax.axvline(0, color=SLATE, lw=0.8)
+    ax.set_xlim(min(c2["beta"].min(), 0) - 0.45, max(c2["beta"].max(), 0) + 0.45)
     ax.set_title(f"Standardized drivers of opioid death rate (R² = {m2.rsquared:.3f}, n = {n})")
     ax.set_xlabel("Standardized coefficient (coral = p < 0.05)")
     save(fig, "03_regression_drivers.png")
