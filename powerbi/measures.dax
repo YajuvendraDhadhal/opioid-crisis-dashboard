@@ -1,0 +1,81 @@
+// DAX measures for the Opioid Crisis Intelligence dashboard
+// Create them in a measure table called _Measures (Home > Enter data > empty table named _Measures).
+// Tables: fact_state_metrics, dim_state, fact_drug_trend, fact_top_drugs, fact_specialties, model_coefficients
+
+Total Opioid Claims =
+SUM ( fact_state_metrics[opioid_claims] )
+
+Total Opioid Claims (M) =
+DIVIDE ( [Total Opioid Claims], 1000000 )
+
+Opioid Deaths =
+SUM ( fact_state_metrics[opioid_deaths] )
+
+States Analyzed =
+CALCULATE (
+    COUNTROWS ( fact_state_metrics ),
+    NOT ISBLANK ( fact_state_metrics[opioid_deaths] )
+)
+
+States Analyzed Label =
+FORMAT ( [States Analyzed], "0" ) & " / " & FORMAT ( COUNTROWS ( ALL ( fact_state_metrics ) ), "0" )
+
+Population =
+SUM ( fact_state_metrics[population] )
+
+Prescribing Rate per 1k =
+DIVIDE ( [Total Opioid Claims], [Population] ) * 1000
+
+Opioid Death Rate per 100k =
+// only states with CDC death data count in the denominator
+VAR pop = CALCULATE ( [Population], NOT ISBLANK ( fact_state_metrics[opioid_deaths] ) )
+RETURN DIVIDE ( [Opioid Deaths], pop ) * 100000
+
+Avg Risk Score =
+AVERAGE ( fact_state_metrics[risk_score] )
+
+Highest Risk State =
+VAR TopRow =
+    TOPN ( 1, FILTER ( ALL ( fact_state_metrics ), NOT ISBLANK ( fact_state_metrics[risk_score] ) ),
+           fact_state_metrics[risk_score], DESC )
+RETURN
+    MAXX ( TopRow, fact_state_metrics[state_name] )
+
+Top Predictor =
+VAR Sig = FILTER ( model_coefficients, model_coefficients[p_value] < 0.05 )
+VAR TopRow = TOPN ( 1, Sig, ABS ( model_coefficients[beta] ), DESC )
+RETURN
+    COALESCE ( MAXX ( TopRow, model_coefficients[label] ), "None significant" )
+
+Is Top 10 =
+IF ( MAX ( fact_state_metrics[risk_rank] ) <= 10, 1, 0 )
+
+Risk Prescribing Part =
+0.3 * AVERAGE ( fact_state_metrics[rx_score] )
+
+Risk Death Part =
+0.4 * AVERAGE ( fact_state_metrics[death_score] )
+
+Risk SDOH Part =
+0.3 * AVERAGE ( fact_state_metrics[sdoh_score] )
+
+Deaths (Trend) =
+SUM ( fact_drug_trend[deaths] )
+
+Change 2019 to 2020 % =
+VAR d2019 = CALCULATE ( [Deaths (Trend)], fact_drug_trend[year] = 2019 )
+VAR d2020 = CALCULATE ( [Deaths (Trend)], fact_drug_trend[year] = 2020 )
+RETURN
+    DIVIDE ( d2020 - d2019, d2019 )
+
+Death Rate Poorest Third =
+CALCULATE ( [Opioid Death Rate per 100k], fact_state_metrics[income_tertile] = 1 )
+
+Death Rate Richest Third =
+CALCULATE ( [Opioid Death Rate per 100k], fact_state_metrics[income_tertile] = 3 )
+
+Risk Colour =
+// Conditional formatting (Format > Data colors > fx > Field value)
+VAR r = MAX ( fact_state_metrics[risk_score] )
+RETURN
+    SWITCH ( TRUE (), ISBLANK ( r ), "#D5DCE3", r >= 60, "#F46036", r >= 40, "#E9C46A", "#1B998B" )

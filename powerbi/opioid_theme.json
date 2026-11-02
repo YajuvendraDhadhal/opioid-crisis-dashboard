@@ -1,0 +1,40 @@
+{
+  "name": "Opioid Intelligence - Navy Teal Coral",
+  "dataColors": ["#1B998B", "#F46036", "#E9C46A", "#13294B", "#6C757D", "#8E7DBE", "#2EC4B6", "#FF9F1C"],
+  "background": "#FFFFFF",
+  "foreground": "#13294B",
+  "tableAccent": "#1B998B",
+  "good": "#1B998B",
+  "neutral": "#E9C46A",
+  "bad": "#F46036",
+  "maximum": "#F46036",
+  "center": "#FFF4E0",
+  "minimum": "#E8F6F4",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#13294B" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 11, "color": "#13294B" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#6C757D" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#13294B" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E1E6EB" } }, "radius": 8 }],
+        "dropShadow": [{ "show": false }],
+        "title": [{ "show": true, "fontColor": { "solid": { "color": "#13294B" } }, "fontSize": 12 }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F3F6F9" } }, "transparency": 0 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#13294B" } }, "fontSize": 26 }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#6C757D" } }, "fontSize": 10 }]
+      }
+    }
+  }
+}
