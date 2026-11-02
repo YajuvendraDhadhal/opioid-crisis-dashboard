@@ -5,6 +5,8 @@ A multi-source analysis of the 2020 Medicare Part D prescribing data (25.2M rows
 
 By [Yajuvendra Dhadhal](https://www.linkedin.com/in/yajuvendra-dhadhal-2b7a93213/) · M.Sc. International Information Systems, FAU Erlangen-Nürnberg
 
+**Project report (PDF):** [docs/Opioid_Crisis_Intelligence_Report.pdf](docs/Opioid_Crisis_Intelligence_Report.pdf)
+
 **Stack:** PostgreSQL (schema, CTEs, NTILE window function, population-weighted aggregation) · Python (pandas, statsmodels, scipy, scikit-learn, matplotlib) · Power BI · GitHub Actions (the whole pipeline runs automatically from the raw public files)
 
 ## Key results (2020)
