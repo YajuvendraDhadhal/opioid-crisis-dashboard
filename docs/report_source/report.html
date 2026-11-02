@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Opioid Crisis Intelligence Report</title>
+<style>
+@page { size:A4; margin:0; }
+:root { --navy:#13294B; --teal:#1B998B; --coral:#F46036; --gold:#E9C46A; --mute:#5B6670; --line:#DDE3E8; --bg:#F3F6F9; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Inter,sans-serif; color:#1F2328; font-size:9.8pt; line-height:1.5; }
+.page { width:210mm; height:297mm; padding:18mm 18mm 16mm; position:relative; page-break-after:always; overflow:hidden; }
+.page:last-child { page-break-after:auto; }
+.foot { position:absolute; bottom:8mm; left:18mm; right:18mm; display:flex; justify-content:space-between; font-size:7.5pt; color:var(--mute); border-top:1px solid var(--line); padding-top:2.5mm; }
+h1 { font-size:18pt; color:var(--navy); margin:0 0 3mm; letter-spacing:-.01em; }
+h1 .n { color:var(--coral); margin-right:3mm; }
+h2 { font-size:11.5pt; color:var(--teal); margin:5mm 0 2mm; }
+p { margin:0 0 2.4mm; }
+table { width:100%; border-collapse:collapse; font-size:8.6pt; margin:2mm 0 3.5mm; }
+th { text-align:left; background:var(--navy); color:#fff; font-weight:600; padding:1.8mm 2.4mm; }
+td { padding:1.6mm 2.4mm; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td { background:#FAFBFC; }
+.kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin:3mm 0 4mm; }
+.kpi { background:var(--bg); border-radius:2.5mm; padding:3.5mm 4mm; border-top:3px solid var(--teal); }
+.kpi.c { border-top-color:var(--coral); } .kpi.g { border-top-color:var(--gold); }
+.kpi b { display:block; font-size:17pt; color:var(--navy); line-height:1.15; }
+.kpi span { font-size:7.8pt; color:var(--mute); }
+.box { background:var(--bg); border-left:3px solid var(--coral); padding:3.5mm 4.5mm; margin:3mm 0; }
+img.full { width:100%; border:1px solid var(--line); border-radius:2mm; margin:1mm 0 2mm; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.cap { font-size:7.8pt; color:var(--mute); margin:-1mm 0 3mm; }
+code { font-family:'DejaVu Sans Mono',monospace; font-size:8pt; background:var(--bg); padding:0 1mm; border-radius:1mm; }
+ul { margin:0 0 3mm; padding-left:5mm; } li { margin-bottom:1.2mm; }
+.title { padding:0; }
+.title .band { background:var(--navy); color:#fff; padding:42mm 20mm 20mm; position:relative; }
+.title .band:after { content:''; position:absolute; left:20mm; bottom:0; width:40mm; height:2mm; background:var(--coral); }
+.title h1 { color:#fff; font-size:34pt; line-height:1.1; margin:4mm 0; }
+.tag { display:inline-block; background:rgba(255,255,255,.15); color:#fff; font-size:7.5pt; letter-spacing:.06em; text-transform:uppercase; padding:1mm 3mm; border-radius:3mm; }
+.title .sub { font-size:12.5pt; opacity:.92; max-width:150mm; }
+.title .body { padding:14mm 20mm; }
+.meta td { border:none; padding:1.3mm 0; font-size:10pt; background:none!important; } .meta td:first-child { width:40mm; color:var(--mute); }
+</style></head><body>
+
+<section class="page title">
+ <div class="band"><span class="tag">Data analytics project · 2020 data · rebuilt Nov 2026</span>
+  <h1>Opioid Crisis<br>Intelligence Dashboard</h1>
+  <div class="sub">Does opioid prescribing explain overdose deaths across U.S. states, and which social factors matter more? A multi-source analysis of Medicare Part D, CDC and AHRQ data.</div></div>
+ <div class="body">
+  <div class="kpis"><div class="kpi"><b>25.2M</b><span>CMS provider × drug rows processed</span></div><div class="kpi c"><b>R² = 0.006</b><span>prescribing rate vs opioid death rate</span></div><div class="kpi g"><b>R² = 0.447</b><span>with 5 social determinants added</span></div></div>
+  <table class="meta">
+   <tr><td>Author</td><td><b>Yajuvendra Dhadhal</b></td></tr>
+   <tr><td>Programme</td><td>M.Sc. International Information Systems, FAU Erlangen-Nürnberg</td></tr>
+   <tr><td>Stack</td><td>PostgreSQL · Python (pandas, statsmodels, scipy, scikit-learn) · Power BI · GitHub Actions</td></tr>
+   <tr><td>Code and data</td><td>github.com/YajuvendraDhadhal/opioid-crisis-dashboard</td></tr>
+   <tr><td>Date</td><td>November 2026</td></tr>
+  </table>
+ </div>
+</section>
+
+<section class="page">
+ <h1>Executive summary</h1>
+ <p>A state health department wants to know where to send opioid intervention resources. A common assumption is that states which prescribe more opioids also have more opioid deaths. This project tests that assumption with three public federal datasets for 2020 and builds a risk ranking of states.</p>
+ <div class="kpis"><div class="kpi"><b>56.9M</b><span>Medicare Part D opioid claims, 51 jurisdictions</span></div><div class="kpi c"><b>54,781</b><span>opioid deaths in the 42 states with CDC data</span></div><div class="kpi g"><b>West Virginia</b><span>highest combined risk score (82.8 of 100)</span></div></div>
+ <h2>Key findings</h2>
+ <ul>
+  <li><b>Prescribing alone does not explain deaths.</b> Across 42 states, the Medicare opioid prescribing rate explains 0.6% of the variation in opioid death rates (R² = 0.006, p = 0.61).</li>
+  <li><b>Social factors explain much more.</b> Adding poverty, unemployment, uninsured rate, GINI index and median income raises R² to 0.447. Unemployment has a significant positive effect (β = +0.41, p = 0.045).</li>
+  <li><b>The uninsured rate is the strongest predictor, but with a negative sign</b> (β = −0.50, p = 0.002). States with many uninsured residents, such as Texas, Oklahoma and Georgia, had low opioid death rates in 2020. This most likely reflects geography, not a protective effect.</li>
+  <li><b>Top 10 priority states:</b> West Virginia, Kentucky, Tennessee, South Carolina, Mississippi, North Carolina, District of Columbia, Ohio, New Mexico, Missouri.</li>
+  <li><b>The drugs behind the crisis changed in 2020.</b> U.S. deaths involving synthetic opioids (mainly illicit fentanyl) rose 55% from 2019, and psychostimulants 48%, while heroin deaths fell 6%.</li>
+ </ul>
+ <div class="box"><b>Recommendation in one line:</b> target help by economic distress and death rates, not by prescribing rates alone, and respond to illicit fentanyl and stimulants as well as to prescribing.</div>
+ <h2>Business question</h2>
+ <p><i>Which U.S. states show the strongest link between opioid prescribing and overdose mortality, and which socioeconomic factors amplify or buffer it, so that a state health department can prioritise intervention resources?</i></p>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>2</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">1</span>Data and method</h1>
+ <table><tr><th>Dataset</th><th>Source</th><th>Level</th><th>Used for</th></tr>
+  <tr><td>Medicare Part D Prescribers by Provider and Drug, 2020</td><td>CMS</td><td>Provider × drug, 25,209,729 rows</td><td>Opioid claims by state, drug and specialty</td></tr>
+  <tr><td>Medicare Part D Prescribers by Geography and Drug, 2020</td><td>CMS</td><td>State × drug</td><td>Official opioid drug flag</td></tr>
+  <tr><td>VSRR Provisional Drug Overdose Death Counts</td><td>CDC NCHS</td><td>State × month × drug indicator</td><td>Opioid deaths, 12 months ending Dec 2020; U.S. trend by drug type</td></tr>
+  <tr><td>Community-Level Health (SDOH) Database, 2020</td><td>AHRQ</td><td>County, 3,234 rows</td><td>Population, poverty, unemployment, uninsured, GINI, income</td></tr></table>
+ <p>2020 is the most recent year in which all three sources overlap, so the design is a single-year comparison of states. Rates use the AHRQ county population, summed to state level.</p>
+ <h2>Pipeline</h2>
+ <svg viewBox="0 0 680 150" width="100%"><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1B998B"/></marker></defs>
+  <g font-family="Inter" font-size="10.5" text-anchor="middle">
+  <rect x="0" y="30" width="110" height="80" rx="8" fill="#F3F6F9" stroke="#DDE3E8"/><text x="55" y="58" font-weight="700" fill="#13294B">Public data</text><text x="55" y="75" font-size="9" fill="#5B6670">CMS · CDC · AHRQ</text><text x="55" y="88" font-size="9" fill="#5B6670">~3.8 GB</text>
+  <rect x="140" y="30" width="110" height="80" rx="8" fill="#F3F6F9" stroke="#DDE3E8"/><text x="195" y="58" font-weight="700" fill="#13294B">prepare.py</text><text x="195" y="75" font-size="9" fill="#5B6670">stream 25M rows,</text><text x="195" y="88" font-size="9" fill="#5B6670">keep opioid rows</text>
+  <rect x="280" y="30" width="120" height="80" rx="8" fill="#13294B"/><text x="340" y="58" font-weight="700" fill="#fff">PostgreSQL</text><text x="340" y="75" font-size="9" fill="#D6E4F0">pop.-weighted SDOH,</text><text x="340" y="88" font-size="9" fill="#D6E4F0">4-CTE merge, NTILE</text>
+  <rect x="430" y="30" width="110" height="80" rx="8" fill="#F3F6F9" stroke="#DDE3E8"/><text x="485" y="58" font-weight="700" fill="#13294B">analysis.py</text><text x="485" y="75" font-size="9" fill="#5B6670">Spearman, OLS, GB,</text><text x="485" y="88" font-size="9" fill="#5B6670">risk score, charts</text>
+  <rect x="570" y="30" width="110" height="80" rx="8" fill="#F46036"/><text x="625" y="58" font-weight="700" fill="#fff">Power BI</text><text x="625" y="75" font-size="9" fill="#FFE3D9">star-schema CSVs,</text><text x="625" y="88" font-size="9" fill="#FFE3D9">TMDL model, DAX</text>
+  <path d="M112 70 H134 M252 70 H274 M402 70 H424 M542 70 H564" stroke="#1B998B" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <text x="340" y="135" font-size="9" fill="#5B6670">The whole pipeline runs automatically on GitHub Actions with its own PostgreSQL container</text></g></svg>
+ <h2>Method</h2>
+ <table><tr><th style="width:30%">Step</th><th>What was done</th></tr>
+  <tr><td>Opioid definition</td><td>A drug counts as an opioid if most of its rows in the CMS Geography × Drug file have <code>Opioid_Drug_Flag = Y</code> (30 generic names)</td></tr>
+  <tr><td>State SDOH values</td><td>County values weighted by county population (SQL)</td></tr>
+  <tr><td>Rates</td><td>Opioid claims per 1,000 residents; opioid deaths per 100,000 residents</td></tr>
+  <tr><td>Correlation</td><td>Spearman, because the SDOH variables are right-skewed</td></tr>
+  <tr><td>Regression</td><td>OLS on standardized variables (comparable β), with VIF checks; gradient boosting as a non-linear cross-check</td></tr>
+  <tr><td>Risk score</td><td>30% prescribing + 40% death rate + 30% SDOH vulnerability, each scaled 0 to 100</td></tr></table>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>3</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">2</span>Prescribing vs deaths</h1>
+ <img class="full" src="02_prescribing_vs_deaths.png">
+ <p class="cap">Figure 1. Each dot is a state (size = population). The trend line is almost flat.</p>
+ <p>States that prescribe more opioids to Medicare patients do not have higher opioid death rates. Kentucky and Tennessee prescribe the most and have high death rates. But West Virginia has a much higher death rate than Kentucky at lower prescribing, DC has one of the highest death rates at the lowest prescribing rate, and Mississippi and Oklahoma prescribe almost as much as West Virginia with far lower death rates.</p>
+ <h1 style="margin-top:6mm"><span class="n">3</span>What does explain deaths?</h1>
+ <div class="grid2" style="align-items:start">
+  <div><img class="full" src="03_regression_drivers.png"><p class="cap">Figure 2. Standardized coefficients; coral = significant (p &lt; 0.05).</p></div>
+  <div><table><tr><th>Variable</th><th>β</th><th>p</th><th>VIF</th></tr><tr><td>Uninsured %</td><td>-0.50</td><td>0.002</td><td>1.4</td></tr><tr><td>Unemployment %</td><td>+0.41</td><td>0.045</td><td>2.4</td></tr><tr><td>Prescribing rate</td><td>+0.35</td><td>0.097</td><td>2.7</td></tr><tr><td>GINI index</td><td>+0.16</td><td>0.439</td><td>2.8</td></tr><tr><td>Median income</td><td>+0.09</td><td>0.794</td><td>6.7</td></tr><tr><td>Poverty %</td><td>-0.08</td><td>0.809</td><td>7.6</td></tr></table>
+  <p style="font-size:8.6pt">R² = 0.447, adjusted 0.352, F-test p = 0.001, n = 42. Poverty and income are strongly correlated (VIF 7.6 and 6.7), so their separate effects are not reliable.</p></div>
+ </div>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>4</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">4</span>Top 10 priority states</h1>
+ <img class="full" src="04_top10_priority_states.png">
+ <table><tr><th>Rank</th><th>State</th><th>Risk score</th><th>Deaths / 100k</th><th>Claims / 1k</th><th>SDOH score</th></tr><tr><td>1</td><td>West Virginia</td><td>82.8</td><td>62.9</td><td>238</td><td>74</td></tr><tr><td>2</td><td>Kentucky</td><td>73.1</td><td>38.3</td><td>317</td><td>66</td></tr><tr><td>3</td><td>Tennessee</td><td>71.3</td><td>36.1</td><td>296</td><td>74</td></tr><tr><td>4</td><td>South Carolina</td><td>58.7</td><td>27.4</td><td>224</td><td>80</td></tr><tr><td>5</td><td>Mississippi</td><td>56.8</td><td>12.4</td><td>244</td><td>100</td></tr><tr><td>6</td><td>North Carolina</td><td>55.8</td><td>25.1</td><td>234</td><td>72</td></tr><tr><td>7</td><td>District of Columbia</td><td>52.9</td><td>58.3</td><td>69</td><td>54</td></tr><tr><td>8</td><td>Ohio</td><td>51.8</td><td>37.7</td><td>183</td><td>51</td></tr><tr><td>9</td><td>New Mexico</td><td>51.0</td><td>25.4</td><td>150</td><td>89</td></tr><tr><td>10</td><td>Missouri</td><td>50.5</td><td>23.0</td><td>255</td><td>51</td></tr></table>
+ <p>Seven of the ten are in the South. The District of Columbia ranks seventh with one of the lowest prescribing rates, because of its very high death rate (58.3 per 100,000), which shows why the death rate gets the largest weight.</p>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>5</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">5</span>2020: the drugs behind the crisis</h1>
+ <img class="full" src="05_drug_type_trend.png">
+ <table><tr><th>U.S. deaths, 12 months ending December</th><th>Change 2019 to 2020</th></tr>
+  <tr><td>Synthetic opioids excl. methadone (mainly fentanyl)</td><td>+55.4%</td></tr><tr><td>Psychostimulants (mainly methamphetamine)</td><td>+47.7%</td></tr>
+  <tr><td>All opioids</td><td>+37.6%</td></tr><tr><td>All drug overdose deaths</td><td>+30.0%</td></tr>
+  <tr><td>Cocaine</td><td>+22.3%</td></tr><tr><td>Natural and semi-synthetic opioids (prescription type)</td><td>+13.2%</td></tr><tr><td>Heroin</td><td>−6.1%</td></tr></table>
+ <p>The fastest growth was in illicit fentanyl and stimulants, not in prescription-type opioids. This helps explain why the prescribing rate is a weak predictor of deaths by 2020.</p>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>6</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">6</span>Who prescribes, and what</h1>
+ <div class="grid2"><img class="full" src="06_top_drugs.png"><img class="full" src="07_top_specialties.png"></div>
+ <p>Hydrocodone/acetaminophen (20.7M claims) and tramadol (12.4M) lead Medicare opioid prescribing. Family Practice (13.0M claims), Internal Medicine (10.0M) and Nurse Practitioners (8.4M) write the most opioid prescriptions. Pain Management has only 2,183 prescribers, but about 1,220 claims each, roughly six times the Family Practice average.</p>
+ <h2>Social determinants across counties</h2>
+ <img class="full" src="08_sdoh_distributions.png" style="width:80%">
+ <p class="cap">Figure. All four SDOH variables are right-skewed, with a long tail of disadvantaged counties. This is why Spearman correlation is used.</p>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>7</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">7</span>Power BI dashboard</h1>
+ <img class="full" src="powerbi_dashboard.png">
+ <p class="cap">One page, built in Power BI Desktop from the pipeline's star-schema tables (file: <code>powerbi/opioid_dashboard.pbix</code>).</p>
+ <table><tr><th style="width:30%">Element</th><th>Content</th></tr>
+  <tr><td>5 KPI cards</td><td>Opioid claims, opioid deaths, states analysed, highest-risk state, strongest predictor (DAX measures)</td></tr>
+  <tr><td>Scatter plot</td><td>Prescribing rate vs death rate by state, coloured by region</td></tr>
+  <tr><td>Stacked bar</td><td>Top 10 states with the three parts of the risk score (Top N filter)</td></tr>
+  <tr><td>Bar chart</td><td>Standardized regression coefficients</td></tr>
+  <tr><td>Line chart</td><td>U.S. deaths by drug type, 2015 to 2025</td></tr>
+  <tr><td>Column chart</td><td>Death rate by income third of states</td></tr></table>
+ <p>The semantic model (7 tables, 1 relationship, 17 measures) is stored as a TMDL script (<code>powerbi/model.tmdl</code>) so it can be recreated in any Power BI Desktop with one paste.</p>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>8</span></div>
+</section>
+
+<section class="page">
+ <h1><span class="n">8</span>What went wrong</h1>
+ <table><tr><th style="width:30%">Problem</th><th>What I did</th></tr>
+  <tr><td>Inconsistent CMS opioid flag</td><td>Topiramate, an anti-seizure drug, appeared among the top opioids because 2 of its 11 rows are flagged as opioid. A drug now counts only if most of its rows are flagged. Buprenorphine HCl, mainly used to treat addiction, dropped out too. Claims went from 60.0M to 56.9M.</td></tr>
+  <tr><td>Numbers differ from my first version</td><td>My April 2026 version (code lost) reported R² = 0.043, 41 states, 58.8M claims and 11,680 deaths. This rebuild is fully reproducible from the raw files and finds R² = 0.006, 42 states, 56.9M claims and 54,781 deaths. The main conclusion is unchanged.</td></tr>
+  <tr><td>AHRQ download blocked</td><td>The server refused downloads without a browser user agent, and the file has moved to the new Community-Level Health Database. Fixed in <code>download.py</code>.</td></tr>
+  <tr><td>Map visuals disabled</td><td>Power BI's map visuals were switched off in the local security options, so the risk map slot shows the income comparison instead.</td></tr></table>
+ <h1 style="margin-top:5mm"><span class="n">9</span>Limitations</h1>
+ <ul><li><b>Ecological data:</b> state-level patterns do not show individual causation.</li>
+  <li><b>Medicare covers mostly people over 65,</b> while most overdose deaths occur among 25 to 54 year olds.</li>
+  <li><b>9 states lack 2020 opioid death data</b> under the CDC indicator used (AL, AR, FL, ID, LA, MN, ND, NE, PA).</li>
+  <li><b>Small sample:</b> 42 states and 6 predictors; one year only, and 2020 was the first COVID-19 year.</li></ul>
+ <h1 style="margin-top:5mm"><span class="n">10</span>Recommendations</h1>
+ <ol style="padding-left:5mm"><li><b>Prioritise distressed states with high death rates,</b> such as West Virginia, New Mexico and DC, instead of relying on prescribing rates.</li>
+  <li><b>Keep prescriber education,</b> but target Family Practice, Internal Medicine and Nurse Practitioners, who write most opioid prescriptions.</li>
+  <li><b>Respond to illicit fentanyl and stimulants:</b> naloxone, fentanyl test strips and drug checking.</li>
+  <li><b>Close data gaps:</b> 9 states have no opioid-specific death data for 2020.</li></ol>
+ <div class="foot"><span>Opioid Crisis Intelligence · Project Report</span><span>9</span></div>
+</section>
+</body></html>
