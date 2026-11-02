@@ -26,6 +26,9 @@ def opioid_generics() -> set[str]:
     flag = geo["Opioid_Drug_Flag"].str.upper().eq("Y")
     names = set(geo.loc[flag, "Gnrc_Name"].str.strip().str.upper())
     print(f"opioid generic names (CMS flag): {len(names)}")
+    print("flagged names:", sorted(names))
+    print(geo[geo["Gnrc_Name"].str.upper().str.contains("TOPIRAMATE", na=False)]
+          [["Prscrbr_Geo_Lvl", "Brnd_Name", "Gnrc_Name", "Opioid_Drug_Flag"]].drop_duplicates().head(20).to_string())
     return names
 
 
