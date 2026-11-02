@@ -1,0 +1,124 @@
+prescriber_type,claims,prescribers,claims_per_prescriber
+Family Practice,13569263.0,66821,203.06884063393244
+Internal Medicine,10416615.0,52781,197.3553930391618
+Nurse Practitioner,8986152.0,62073,144.7674834469093
+Physician Assistant,5117543.0,39303,130.2074396356512
+Pain Management,2728804.0,2209,1235.3119058397465
+Physical Medicine and Rehabilitation,2695629.0,4852,555.570692497939
+Anesthesiology,2648152.0,2586,1024.0340293890179
+Interventional Pain Management,2394261.0,1449,1652.3540372670807
+Orthopedic Surgery,2037436.0,15843,128.60165372719814
+Neurology,1259080.0,8831,142.5750198165553
+Rheumatology,913810.0,3373,270.9190631485325
+Emergency Medicine,853141.0,20472,41.67355412270418
+General Practice,649951.0,2688,241.79724702380952
+Dentist,648839.0,19584,33.131076388888886
+Hematology-Oncology,548187.0,5556,98.6657667386609
+General Surgery,520442.0,11358,45.821623525268535
+Psychiatry,336996.0,7070,47.66562942008487
+Oral Surgery (Dentist only),317529.0,3966,80.06278366111951
+Urology,304306.0,5778,52.66632052613361
+Geriatric Medicine,252639.0,1313,192.4135567402894
+Neurosurgery,199221.0,1995,99.86015037593985
+Podiatry,190169.0,4936,38.52694489465154
+Medical Oncology,168341.0,1913,87.99843178254051
+Hospice and Palliative Care,136526.0,670,203.77014925373135
+Student in an Organized Health Care Education/Training Program,134908.0,5578,24.18572965220509
+Hospitalist,114608.0,2312,49.57093425605537
+Otolaryngology,105525.0,3688,28.6130694143167
+Cardiology,99880.0,1288,77.54658385093168
+Hand Surgery,97298.0,1200,81.08166666666666
+Nephrology,93754.0,1601,58.55965021861336
+Plastic and Reconstructive Surgery,74024.0,1984,37.310483870967744
+Sports Medicine,72251.0,671,107.67660208643815
+Maxillofacial Surgery,68442.0,710,96.39718309859155
+Vascular Surgery,67174.0,1459,46.04112405757368
+Pulmonary Disease,66772.0,879,75.96359499431172
+Dermatology,65538.0,1035,63.321739130434786
+Obstetrics & Gynecology,64155.0,1797,35.701168614357265
+Certified Clinical Nurse Specialist,63379.0,625,101.4064
+Pediatric Medicine,62882.0,626,100.45047923322684
+Osteopathic Manipulative Medicine,61070.0,288,212.04861111111111
+Infectious Disease,51329.0,749,68.53004005340453
+Psychiatry & Neurology,51117.0,1392,36.72198275862069
+Ophthalmology,48131.0,1010,47.654455445544556
+Pharmacist,46112.0,160,288.2
+Gastroenterology,39670.0,1021,38.854064642507346
+Addiction Medicine,38518.0,152,253.4078947368421
+Radiation Oncology,36427.0,1177,30.949022939677146
+Pain Medicine,32795.0,58,565.4310344827586
+Hematology,28583.0,290,98.56206896551724
+Specialist,28329.0,253,111.97233201581028
+Endocrinology,28186.0,498,56.59839357429719
+Colorectal Surgery (Proctology),25312.0,751,33.70439414114514
+Orthopaedic Surgery,25193.0,688,36.61773255813954
+Oral & Maxillofacial Surgery,23560.0,331,71.17824773413898
+Preventive Medicine,23292.0,135,172.53333333333333
+Thoracic Surgery,20413.0,484,42.175619834710744
+Neuropsychiatry,19883.0,216,92.05092592592592
+Diagnostic Radiology,19295.0,197,97.94416243654823
+Gynecological Oncology,17858.0,422,42.317535545023695
+Family Medicine,17461.0,169,103.31952662721893
+Certified Registered Nurse Anesthetist (CRNA),14524.0,56,259.35714285714283
+Registered Nurse,14022.0,126,111.28571428571429
+Interventional Radiology,13850.0,116,119.39655172413794
+Surgical Oncology,13290.0,357,37.226890756302524
+Critical Care (Intensivists),11245.0,125,89.96
+Clinical Cardiac Electrophysiology,11007.0,290,37.9551724137931
+Cardiac Surgery,10268.0,229,44.838427947598255
+Allergy/ Immunology,8975.0,90,99.72222222222223
+Pathology,5141.0,27,190.40740740740742
+Plastic Surgery,4919.0,234,21.021367521367523
+Sleep Medicine,4329.0,93,46.54838709677419
+Interventional Cardiology,3968.0,116,34.206896551724135
+Geriatric Psychiatry,3855.0,43,89.65116279069767
+Hematopoietic Cell Transplantation and Cellular Therapy,3749.0,50,74.98
+Neurological Surgery,3386.0,109,31.06422018348624
+Undefined Physician type,2682.0,42,63.857142857142854
+Certified Nurse Midwife,1948.0,23,84.69565217391305
+Naturopath,1695.0,61,27.78688524590164
+Nuclear Medicine,1485.0,13,114.23076923076923
+Surgery,1256.0,62,20.258064516129032
+Clinic or Group Practice,1229.0,9,136.55555555555554
+Undersea and Hyperbaric Medicine,1178.0,22,53.54545454545455
+Legal Medicine,1164.0,17,68.47058823529412
+"Neuromusculoskeletal Medicine, Sports Medicine",1128.0,10,112.8
+Clinic/Center,1121.0,22,50.95454545454545
+Licensed Practical Nurse,854.0,3,284.6666666666667
+"Psychologist, Clinical",773.0,24,32.208333333333336
+Counselor,713.0,10,71.3
+Thoracic Surgery (Cardiothoracic Vascular Surgery),683.0,21,32.523809523809526
+General Acute Care Hospital,408.0,10,40.8
+Peripheral Vascular Disease,370.0,8,46.25
+Colon & Rectal Surgery,362.0,20,18.1
+Micrographic Dermatologic Surgery,335.0,8,41.875
+Hospital,244.0,1,244.0
+"Medical Genetics, Ph.D. Medical Genetics",227.0,3,75.66666666666667
+Physical Therapist in Private Practice,223.0,3,74.33333333333333
+Advanced Heart Failure and Transplant Cardiology,220.0,14,15.714285714285714
+Chiropractic,197.0,4,49.25
+Personal Emergency Response Attendant,153.0,3,51.0
+Ambulatory Surgical Center,115.0,4,28.75
+Military Health Care Provider,113.0,5,22.6
+Dental Assistant,111.0,1,111.0
+Optometry,104.0,6,17.333333333333332
+Independent Medical Examiner,101.0,2,50.5
+Health Maintenance Organization,94.0,2,47.0
+Rehabilitation Practitioner,84.0,1,84.0
+Unknown Supplier/Provider Specialty,75.0,2,37.5
+Program of All-Inclusive Care for the Elderly (PACE) Provider Organization,66.0,1,66.0
+Physical Medicine & Rehabilitation,64.0,2,32.0
+Medical Genetics and Genomics,55.0,3,18.333333333333332
+Dental Hygienist,37.0,1,37.0
+Radiology,35.0,1,35.0
+Case Manager/Care Coordinator,32.0,1,32.0
+Slide Preparation Facility,30.0,1,30.0
+Community Health Worker,30.0,1,30.0
+Marriage & Family Therapist,26.0,1,26.0
+Durable Medical Equipment & Medical Supplies,24.0,2,12.0
+Speech Language Pathologist,24.0,1,24.0
+Respite Care,24.0,1,24.0
+Licensed Clinical Social Worker,19.0,1,19.0
+,16.0,1,16.0
+"Assistant, Podiatric",13.0,1,13.0
+Behavior Analyst,11.0,1,11.0
