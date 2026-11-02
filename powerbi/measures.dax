@@ -20,15 +20,15 @@ CALCULATE (
 States Analyzed Label =
 FORMAT ( [States Analyzed], "0" ) & " / " & FORMAT ( COUNTROWS ( ALL ( fact_state_metrics ) ), "0" )
 
-Population =
+Total Population =
 SUM ( fact_state_metrics[population] )
 
 Prescribing Rate per 1k =
-DIVIDE ( [Total Opioid Claims], [Population] ) * 1000
+DIVIDE ( [Total Opioid Claims], [Total Population] ) * 1000
 
 Opioid Death Rate per 100k =
 // only states with CDC death data count in the denominator
-VAR pop = CALCULATE ( [Population], NOT ISBLANK ( fact_state_metrics[opioid_deaths] ) )
+VAR pop = CALCULATE ( [Total Population], NOT ISBLANK ( fact_state_metrics[opioid_deaths] ) )
 RETURN DIVIDE ( [Opioid Deaths], pop ) * 100000
 
 Avg Risk Score =

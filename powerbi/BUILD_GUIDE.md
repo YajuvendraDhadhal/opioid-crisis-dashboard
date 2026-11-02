@@ -53,7 +53,7 @@ Builds the one-page **Opioid Crisis Intelligence** dashboard in Power BI Desktop
 
 **D. Line chart:** X = `fact_drug_trend[year]` (Continuous), Y = `Deaths (Trend)`, Legend = `indicator`. Filter: exclude "Number of Drug Overdose Deaths". Add a constant line or shaded band at 2020 (Analytics pane → X-axis constant line = 2020).
 
-**E. Filled map:** Location = `dim_state[state_name]`, Tooltips = `risk_score`, `opioid_death_rate_per_100k`. Fill colours → fx → **Field value** → `Risk Colour`.
+**E. Filled map (optional):** needs map visuals enabled in *File → Options → Security*. In the published `.pbix` this slot shows chart F instead. Location = `dim_state[state_name]`, Tooltips = `risk_score`, `opioid_death_rate_per_100k`. Fill colours → fx → **Field value** → `Risk Colour`.
 
 **F. Clustered column chart:** X = `fact_state_metrics[income_tertile]` (rename to "Income third: 1 = poorest"), Y = `Opioid Death Rate per 100k`.
 

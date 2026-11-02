@@ -1,0 +1,345 @@
+createOrReplace
+
+	table dim_state
+		column state_abbr
+			dataType: string
+			sourceColumn: state_abbr
+
+		column state_name
+			dataType: string
+			sourceColumn: state_name
+			dataCategory: StateOrProvince
+
+		column region
+			dataType: string
+			sourceColumn: region
+
+		partition dim_state = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\dim_state.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"state_abbr", type text}, {"state_name", type text}, {"region", type text}}, "en-US")
+					in
+						Typed
+
+	table fact_state_metrics
+		column state_abbr
+			dataType: string
+			sourceColumn: state_abbr
+
+		column state_name
+			dataType: string
+			sourceColumn: state_name
+			dataCategory: StateOrProvince
+
+		column region
+			dataType: string
+			sourceColumn: region
+
+		column population
+			dataType: double
+			sourceColumn: population
+
+		column opioid_claims
+			dataType: double
+			sourceColumn: opioid_claims
+
+		column opioid_prescribers
+			dataType: double
+			sourceColumn: opioid_prescribers
+
+		column opioid_drug_cost
+			dataType: double
+			sourceColumn: opioid_drug_cost
+
+		column all_drug_claims
+			dataType: double
+			sourceColumn: all_drug_claims
+
+		column opioid_deaths
+			dataType: double
+			sourceColumn: opioid_deaths
+
+		column all_overdose_deaths
+			dataType: double
+			sourceColumn: all_overdose_deaths
+
+		column poverty_pct
+			dataType: double
+			sourceColumn: poverty_pct
+
+		column unemployment_pct
+			dataType: double
+			sourceColumn: unemployment_pct
+
+		column uninsured_pct
+			dataType: double
+			sourceColumn: uninsured_pct
+
+		column gini_index
+			dataType: double
+			sourceColumn: gini_index
+
+		column median_hh_income
+			dataType: double
+			sourceColumn: median_hh_income
+
+		column rx_rate_per_1k
+			dataType: double
+			sourceColumn: rx_rate_per_1k
+
+		column opioid_share_pct
+			dataType: double
+			sourceColumn: opioid_share_pct
+
+		column opioid_death_rate_per_100k
+			dataType: double
+			sourceColumn: opioid_death_rate_per_100k
+
+		column overdose_death_rate_per_100k
+			dataType: double
+			sourceColumn: overdose_death_rate_per_100k
+
+		column income_tertile
+			dataType: double
+			sourceColumn: income_tertile
+
+		column rx_score
+			dataType: double
+			sourceColumn: rx_score
+
+		column death_score
+			dataType: double
+			sourceColumn: death_score
+
+		column sdoh_score
+			dataType: double
+			sourceColumn: sdoh_score
+
+		column risk_score
+			dataType: double
+			sourceColumn: risk_score
+
+		column risk_rank
+			dataType: double
+			sourceColumn: risk_rank
+
+		measure 'Total Opioid Claims' =
+				SUM ( fact_state_metrics[opioid_claims] )
+			formatString: #,0
+
+		measure 'Total Opioid Claims (M)' =
+				DIVIDE ( [Total Opioid Claims], 1000000 )
+			formatString: 0.0"M"
+
+		measure 'Opioid Deaths' =
+				SUM ( fact_state_metrics[opioid_deaths] )
+			formatString: #,0
+
+		measure 'States Analyzed' =
+				CALCULATE ( COUNTROWS ( fact_state_metrics ), NOT ISBLANK ( fact_state_metrics[opioid_deaths] ) )
+			formatString: 0
+
+		measure 'States Analyzed Label' =
+				FORMAT ( [States Analyzed], "0" ) & " / " & FORMAT ( COUNTROWS ( ALL ( fact_state_metrics ) ), "0" )
+
+		measure 'Total Population' =
+				SUM ( fact_state_metrics[population] )
+			formatString: #,0
+
+		measure 'Prescribing Rate per 1k' =
+				DIVIDE ( [Total Opioid Claims], [Total Population] ) * 1000
+			formatString: 0.0
+
+		measure 'Opioid Death Rate per 100k' =
+				VAR pop = CALCULATE ( [Total Population], NOT ISBLANK ( fact_state_metrics[opioid_deaths] ) )
+				RETURN DIVIDE ( [Opioid Deaths], pop ) * 100000
+
+		measure 'Avg Risk Score' =
+				AVERAGE ( fact_state_metrics[risk_score] )
+			formatString: 0.0
+
+		measure 'Highest Risk State' =
+				VAR TopRow = TOPN ( 1, FILTER ( ALL ( fact_state_metrics ), NOT ISBLANK ( fact_state_metrics[risk_score] ) ), fact_state_metrics[risk_score], DESC )
+				RETURN MAXX ( TopRow, fact_state_metrics[state_name] )
+
+		measure 'Top Predictor' =
+				VAR Sig = FILTER ( ALL ( model_coefficients ), model_coefficients[p_value] < 0.05 )
+				VAR TopRow = TOPN ( 1, Sig, ABS ( model_coefficients[beta] ), DESC )
+				RETURN COALESCE ( MAXX ( TopRow, model_coefficients[label] ), "None significant" )
+
+		measure 'Risk Prescribing Part' =
+				0.3 * AVERAGE ( fact_state_metrics[rx_score] )
+			formatString: 0.0
+
+		measure 'Risk Death Part' =
+				0.4 * AVERAGE ( fact_state_metrics[death_score] )
+			formatString: 0.0
+
+		measure 'Risk SDOH Part' =
+				0.3 * AVERAGE ( fact_state_metrics[sdoh_score] )
+			formatString: 0.0
+
+		measure 'Deaths (Trend)' =
+				SUM ( fact_drug_trend[deaths] )
+			formatString: #,0
+
+		measure 'Change 2019 to 2020 %' =
+				VAR d2019 = CALCULATE ( [Deaths (Trend)], fact_drug_trend[year] = 2019 )
+				VAR d2020 = CALCULATE ( [Deaths (Trend)], fact_drug_trend[year] = 2020 )
+				RETURN DIVIDE ( d2020 - d2019, d2019 )
+
+		measure 'Risk Colour' =
+				VAR r = MAX ( fact_state_metrics[risk_score] )
+				RETURN SWITCH ( TRUE (), ISBLANK ( r ), "#D5DCE3", r >= 60, "#F46036", r >= 40, "#E9C46A", "#1B998B" )
+
+		partition fact_state_metrics = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\fact_state_metrics.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"state_abbr", type text}, {"state_name", type text}, {"region", type text}, {"population", type number}, {"opioid_claims", type number}, {"opioid_prescribers", type number}, {"opioid_drug_cost", type number}, {"all_drug_claims", type number}, {"opioid_deaths", type number}, {"all_overdose_deaths", type number}, {"poverty_pct", type number}, {"unemployment_pct", type number}, {"uninsured_pct", type number}, {"gini_index", type number}, {"median_hh_income", type number}, {"rx_rate_per_1k", type number}, {"opioid_share_pct", type number}, {"opioid_death_rate_per_100k", type number}, {"overdose_death_rate_per_100k", type number}, {"income_tertile", type number}, {"rx_score", type number}, {"death_score", type number}, {"sdoh_score", type number}, {"risk_score", type number}, {"risk_rank", type number}}, "en-US")
+					in
+						Typed
+
+	table fact_drug_trend
+		column year
+			dataType: int64
+			sourceColumn: year
+
+		column indicator
+			dataType: string
+			sourceColumn: indicator
+
+		column deaths
+			dataType: double
+			sourceColumn: deaths
+
+		partition fact_drug_trend = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\fact_drug_trend.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"year", Int64.Type}, {"indicator", type text}, {"deaths", type number}}, "en-US")
+					in
+						Typed
+
+	table fact_top_drugs
+		column generic_name
+			dataType: string
+			sourceColumn: generic_name
+
+		column claims
+			dataType: double
+			sourceColumn: claims
+
+		column prescribers
+			dataType: double
+			sourceColumn: prescribers
+
+		partition fact_top_drugs = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\fact_top_drugs.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"generic_name", type text}, {"claims", type number}, {"prescribers", type number}}, "en-US")
+					in
+						Typed
+
+	table fact_specialties
+		column prescriber_type
+			dataType: string
+			sourceColumn: prescriber_type
+
+		column claims
+			dataType: double
+			sourceColumn: claims
+
+		column prescribers
+			dataType: double
+			sourceColumn: prescribers
+
+		column claims_per_prescriber
+			dataType: double
+			sourceColumn: claims_per_prescriber
+
+		partition fact_specialties = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\fact_specialties.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"prescriber_type", type text}, {"claims", type number}, {"prescribers", type number}, {"claims_per_prescriber", type number}}, "en-US")
+					in
+						Typed
+
+	table model_coefficients
+		column variable
+			dataType: string
+			sourceColumn: variable
+
+		column label
+			dataType: string
+			sourceColumn: label
+
+		column beta
+			dataType: double
+			sourceColumn: beta
+
+		column p_value
+			dataType: double
+			sourceColumn: p_value
+
+		column vif
+			dataType: double
+			sourceColumn: vif
+
+		column gb_importance
+			dataType: double
+			sourceColumn: gb_importance
+
+		partition model_coefficients = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\model_coefficients.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"variable", type text}, {"label", type text}, {"beta", type number}, {"p_value", type number}, {"vif", type number}, {"gb_importance", type number}}, "en-US")
+					in
+						Typed
+
+	table correlations
+		column variable
+			dataType: string
+			sourceColumn: variable
+
+		column label
+			dataType: string
+			sourceColumn: label
+
+		column spearman_r
+			dataType: double
+			sourceColumn: spearman_r
+
+		column p_value
+			dataType: double
+			sourceColumn: p_value
+
+		partition correlations = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(File.Contents("C:\Users\yashraj\Documents\opioid-crisis-dashboard\data\correlations.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+						Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+						Typed = Table.TransformColumnTypes(Promoted, {{"variable", type text}, {"label", type text}, {"spearman_r", type number}, {"p_value", type number}}, "en-US")
+					in
+						Typed
+
+	relationship rel_state
+		fromColumn: fact_state_metrics.state_abbr
+		toColumn: dim_state.state_abbr

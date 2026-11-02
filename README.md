@@ -37,12 +37,19 @@ Family Practice (13.0M claims), Internal Medicine (10.0M) and Nurse Practitioner
 
 ## Power BI dashboard
 
-The `powerbi/` folder contains everything for the one-page Power BI dashboard:
+![Power BI dashboard](docs/powerbi_dashboard.png)
 
-- `data/`: star-schema tables exported by the pipeline (`dim_state`, `fact_state_metrics`, `fact_drug_trend`, `fact_top_drugs`, `fact_specialties`, `fact_county_sdoh`, `model_coefficients`, `correlations`)
+[`powerbi/opioid_dashboard.pbix`](powerbi/opioid_dashboard.pbix): one page with 5 KPI cards, prescribing vs death rate (scatter), top 10 priority states (stacked risk score), regression drivers, overdose deaths by drug type and death rate by income third.
+
+The data paths in the `.pbix` point to my local folder. To open it on another machine, change the source folder in **Transform data → Data source settings** to your copy of `powerbi/data/`.
+
+Everything needed to rebuild it is in `powerbi/`:
+
+- `data/`: star-schema tables exported by the pipeline (`dim_state`, `fact_state_metrics`, `fact_drug_trend`, `fact_top_drugs`, `fact_specialties`, `model_coefficients`, `correlations`)
+- `model.tmdl`: the full semantic model (tables, relationship, 17 DAX measures) as a TMDL script. Paste it into Power BI Desktop's **TMDL view** and click Apply
+- `measures.dax`: the same DAX measures as plain text
 - `opioid_theme.json`: report theme (navy, teal, coral, gold)
-- `measures.dax`: all DAX measures (KPI cards, risk score parts, death rate with the correct denominator, 2019 to 2020 change)
-- `BUILD_GUIDE.md`: the layout with 5 KPI cards, a scatter plot, top 10 states, drivers, trend, risk map and a poor-vs-rich comparison
+- `BUILD_GUIDE.md`: layout and visual settings
 
 ## How it works
 
