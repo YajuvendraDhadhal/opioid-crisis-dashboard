@@ -22,9 +22,10 @@ jobs:
           "
       - name: CDC VSRR
         run: |
+          pip -q install pandas openpyxl
           curl -sL "https://data.cdc.gov/api/views/xkb8-kh2a/rows.csv?accessType=DOWNLOAD" -o cdc.csv; wc -l cdc.csv; head -3 cdc.csv
           python3 -c "
-          import pandas as pd; d=pd.read_csv('cdc.csv'); print(d.columns.tolist()); print(d['Indicator'].value_counts().to_string()); print(d['Year'].unique()); print(d['Month'].unique()); print(d['State'].unique())"
+          import pandas as pd; d=pd.read_csv('cdc.csv'); print(d.columns.tolist()); print(d['Indicator'].value_counts().to_string()); print(d['Year'].unique()); print(d['Month'].unique()); print(d['State'].unique()); s=d[(d.Year==2020)&(d.Month=='December')]; print(s.pivot_table(index='State',columns='Indicator',values='Data Value',aggfunc='first').notna().sum().to_string())"
       - name: AHRQ SDOH 2020 county
         run: |
           pip -q install pandas openpyxl
