@@ -7,30 +7,15 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: CMS Part D by Provider and Drug 2020 (first lines)
-        run: |
-          curl -sL -r 0-3000 "https://data.cms.gov/sites/default/files/2024-05/75fecc51-c9e8-4904-b570-9da9dc101721/MUP_DPR_RY24_P04_V10_DY20_NPIBN.csv" | head -5
-          curl -sIL "https://data.cms.gov/sites/default/files/2024-05/75fecc51-c9e8-4904-b570-9da9dc101721/MUP_DPR_RY24_P04_V10_DY20_NPIBN.csv" | grep -i -E "content-length|HTTP/"
-          echo "== catalog entries for 2020"
-          curl -sL "https://data.cms.gov/data.json" | python3 -c "
-          import json,sys
-          d=json.load(sys.stdin)
-          for ds in d['dataset']:
-              if 'Part D Prescribers - by Provider' in ds['title'] or 'Part D Prescribers - by Geography and Drug' in ds['title']:
-                  for x in ds.get('distribution',[]):
-                      if '2020' in x.get('title','') and x.get('mediaType')=='text/csv': print(x['title'],'|',x.get('downloadURL'))
-          "
-      - name: CDC VSRR
-        run: |
-          pip -q install pandas openpyxl
-          curl -sL "https://data.cdc.gov/api/views/xkb8-kh2a/rows.csv?accessType=DOWNLOAD" -o cdc.csv; wc -l cdc.csv; head -3 cdc.csv
-          python3 -c "
-          import pandas as pd; d=pd.read_csv('cdc.csv'); print(d.columns.tolist()); print(d['Indicator'].value_counts().to_string()); print(d['Year'].unique()); print(d['Month'].unique()); print(d['State'].unique()); s=d[(d.Year==2020)&(d.Month=='December')]; print(s.pivot_table(index='State',columns='Indicator',values='Data Value',aggfunc='first').notna().sum().to_string())"
       - name: AHRQ SDOH 2020 county
         run: |
           pip -q install pandas openpyxl
-          curl -sL "https://www.ahrq.gov/sites/default/files/wysiwyg/sdoh/clh_2020_county_2_0.xlsx" -o sdoh.xlsx; ls -la sdoh.xlsx; file sdoh.xlsx
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36"
+          for u in https://www.ahrq.gov/sites/default/files/wysiwyg/sdoh/clh_2020_county_2_0.xlsx https://www.ahrq.gov/sites/default/files/wysiwyg/sdoh/SDOH_2020_COUNTY_1_0.xlsx https://www.ahrq.gov/sites/default/files/wysiwyg/sdoh/SDOH_2020_COUNTY_1_0.XLSX; do
+            echo "== $u"; curl -sL -A "$UA" "$u" -o t.xlsx -w "%{http_code} %{size_download}\n"; file t.xlsx; head -c 400 t.xlsx | strings | head -5
+            if file t.xlsx | grep -q -i "zip\|excel\|microsoft"; then cp t.xlsx sdoh.xlsx; break; fi
+          done
           python3 -c "
           import pandas as pd; x=pd.ExcelFile('sdoh.xlsx'); print(x.sheet_names)
-          d=x.parse(x.sheet_names[-1] if len(x.sheet_names)>1 else 0, nrows=5); print(d.shape)
-          cols=d.columns.tolist(); print(cols[:15]); print([c for c in cols if any(k in c.upper() for k in ['UNEMP','POV','UNINS','GINI','MEDIAN_HH','TOT_POP','STATE'])])"
+          for s in x.sheet_names:
+              d=x.parse(s, nrows=3); cols=d.columns.tolist(); print(s, d.shape, cols[:12]); print([c for c in cols if any(k in str(c).upper() for k in ['UNEMP','POV','UNINS','GINI','MEDIAN_HH','TOT_POP','STATE'])][:40])"
