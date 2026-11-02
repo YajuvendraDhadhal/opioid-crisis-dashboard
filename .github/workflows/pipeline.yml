@@ -1,0 +1,60 @@
+name: Run analysis pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["src/**", "sql/**", ".github/workflows/pipeline.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: opioid
+          POSTGRES_PASSWORD: opioid
+          POSTGRES_DB: opioid
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U opioid" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://opioid:opioid@localhost:5432/opioid
+      PGPASSWORD: opioid
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Restore prepared staging files
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: data/staging
+          key: staging-v1-${{ hashFiles('src/prepare.py', 'src/download.py') }}
+      - name: Download public data (CMS, CDC, AHRQ)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python src/download.py
+      - name: Prepare staging files (filter 25M CMS rows to opioids)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python src/prepare.py && rm -rf data/raw
+      - name: Build PostgreSQL tables
+        run: |
+          psql -h localhost -U opioid -d opioid -v ON_ERROR_STOP=1 -f sql/01_schema.sql
+          psql -h localhost -U opioid -d opioid -v ON_ERROR_STOP=1 -f sql/02_load.sql
+          psql -h localhost -U opioid -d opioid -v ON_ERROR_STOP=1 -f sql/03_transform.sql
+      - name: Statistics, charts and Power BI exports
+        run: python src/analysis.py
+      - name: Commit results
+        run: |
+          git config user.name "Yajuvendra Dhadhal"
+          git config user.email "dhadhalyashraj27@gmail.com"
+          git add results powerbi/data
+          git commit -m "Pipeline run: results, charts and Power BI data" || echo "no changes"
+          git pull --rebase -q && git push

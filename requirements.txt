@@ -1,0 +1,9 @@
+pandas>=2.2
+numpy
+openpyxl
+psycopg[binary]>=3.1
+statsmodels>=0.14
+scipy
+scikit-learn
+matplotlib
+tabulate
