@@ -15,66 +15,66 @@
     "NE",
     "PA"
   ],
-  "total_opioid_claims": 59974635.0,
-  "total_opioid_prescribers": 385831,
+  "total_opioid_claims": 56944321.0,
+  "total_opioid_prescribers": 359839,
   "opioid_deaths_analyzed_states": 54781.0,
   "model1": {
-    "r2": 0.007889016260585247,
-    "p": 0.5759185695651846,
-    "slope": 0.020257051804750195
+    "r2": 0.006462054505832926,
+    "p": 0.6128110741707242,
+    "slope": 0.01916010712588306
   },
   "model2": {
-    "r2": 0.45098287647887636,
-    "adj_r2": 0.3568656553038265,
-    "f_p": 0.0011590112163086576,
+    "r2": 0.44650691093452133,
+    "adj_r2": 0.3516223813804392,
+    "f_p": 0.0013126958470599363,
     "coefficients": [
       {
         "variable": "rx_rate_per_1k",
         "label": "Prescribing rate",
-        "beta": 0.3695957409116005,
-        "p_value": 0.08183216864698817,
-        "vif": 2.7127458652929324,
-        "gb_importance": 0.163944076184435
+        "beta": 0.3524005892306129,
+        "p_value": 0.0973811082968496,
+        "vif": 2.7068024562877917,
+        "gb_importance": 0.16350373152383876
       },
       {
         "variable": "poverty_pct",
         "label": "Poverty %",
-        "beta": -0.07604109093464181,
-        "p_value": 0.8275136296530038,
-        "vif": 7.648859463978992,
-        "gb_importance": 0.11141629738197306
+        "beta": -0.08486007842179892,
+        "p_value": 0.8086246728282822,
+        "vif": 7.6461057259976,
+        "gb_importance": 0.11333438445892853
       },
       {
         "variable": "unemployment_pct",
         "label": "Unemployment %",
-        "beta": 0.40862354686703306,
-        "p_value": 0.04311558966908399,
-        "vif": 2.4164417612327034,
-        "gb_importance": 0.3915002295452479
+        "beta": 0.40563651784909094,
+        "p_value": 0.04531388735359359,
+        "vif": 2.4144546883452866,
+        "gb_importance": 0.3976955725985657
       },
       {
         "variable": "uninsured_pct",
         "label": "Uninsured %",
-        "beta": -0.4970350359216458,
-        "p_value": 0.0017105402890753043,
-        "vif": 1.3645601722954142,
+        "beta": -0.5019945461778207,
+        "p_value": 0.0016037083948216124,
+        "vif": 1.3617643170795786,
         "gb_importance": 0.6527762997164648
       },
       {
         "variable": "gini_index",
         "label": "GINI index",
-        "beta": 0.15961963760664974,
-        "p_value": 0.45271159276573497,
-        "vif": 2.816696385168895,
-        "gb_importance": 0.0591872285339782
+        "beta": 0.1648985680153684,
+        "p_value": 0.4394931988821015,
+        "vif": 2.811995215752349,
+        "gb_importance": 0.057552695261639
       },
       {
         "variable": "median_hh_income",
         "label": "Median income",
-        "beta": 0.1074005971553587,
-        "p_value": 0.7445496198614647,
-        "vif": 6.817599557945707,
-        "gb_importance": 0.13350017899106129
+        "beta": 0.08574337188702771,
+        "p_value": 0.794093507805411,
+        "vif": 6.721236090138543,
+        "gb_importance": 0.13463765800196054
       }
     ]
   },
@@ -82,8 +82,8 @@
     {
       "variable": "rx_rate_per_1k",
       "label": "Prescribing rate",
-      "spearman_r": 0.03508629770683089,
-      "p_value": 0.8254110271638017
+      "spearman_r": 0.018718094157685765,
+      "p_value": 0.9063398853599068
     },
     {
       "variable": "poverty_pct",
@@ -130,9 +130,9 @@
     {
       "risk_rank": 1,
       "state_name": "West Virginia",
-      "risk_score": 83.11029140452644,
+      "risk_score": 82.77938297648781,
       "opioid_death_rate_per_100k": 62.907139766717975,
-      "rx_rate_per_1k": 253.03387247942655,
+      "rx_rate_per_1k": 238.24377872178445,
       "sdoh_score": 74.40476190476191
     },
     {
@@ -140,39 +140,39 @@
       "state_name": "Kentucky",
       "risk_score": 73.0867214219372,
       "opioid_death_rate_per_100k": 38.30162224963424,
-      "rx_rate_per_1k": 332.9094530824177,
+      "rx_rate_per_1k": 317.13115694655613,
       "sdoh_score": 66.07142857142858
     },
     {
       "risk_rank": 3,
       "state_name": "Tennessee",
-      "risk_score": 71.0534103431257,
+      "risk_score": 71.2731017669945,
       "opioid_death_rate_per_100k": 36.05882106260414,
-      "rx_rate_per_1k": 308.3742403578831,
+      "rx_rate_per_1k": 295.55608254132886,
       "sdoh_score": 73.80952380952382
     },
     {
       "risk_rank": 4,
       "state_name": "South Carolina",
-      "risk_score": 58.47970307829328,
+      "risk_score": 58.66918022731103,
       "opioid_death_rate_per_100k": 27.41815455000936,
-      "rx_rate_per_1k": 233.2666276082354,
+      "rx_rate_per_1k": 223.70032349887077,
       "sdoh_score": 80.35714285714288
     },
     {
       "risk_rank": 5,
       "state_name": "Mississippi",
-      "risk_score": 56.686414786284516,
+      "risk_score": 56.7703518534215,
       "opioid_death_rate_per_100k": 12.374930202375383,
-      "rx_rate_per_1k": 255.33639520630751,
+      "rx_rate_per_1k": 243.86862452147756,
       "sdoh_score": 100.00000000000001
     },
     {
       "risk_rank": 6,
       "state_name": "North Carolina",
-      "risk_score": 55.940689080951614,
+      "risk_score": 55.76320312018973,
       "opioid_death_rate_per_100k": 25.05240834809407,
-      "rx_rate_per_1k": 246.88089332151128,
+      "rx_rate_per_1k": 233.64605838096932,
       "sdoh_score": 72.02380952380955
     },
     {
@@ -180,32 +180,32 @@
       "state_name": "District of Columbia",
       "risk_score": 52.91371691377098,
       "opioid_death_rate_per_100k": 58.26426619789337,
-      "rx_rate_per_1k": 72.7605295922641,
+      "rx_rate_per_1k": 69.1108217683276,
       "sdoh_score": 53.571428571428584
     },
     {
       "risk_rank": 8,
       "state_name": "Ohio",
-      "risk_score": 52.29351970349835,
+      "risk_score": 51.79885383542482,
       "opioid_death_rate_per_100k": 37.660783150718075,
-      "rx_rate_per_1k": 196.63913697964287,
+      "rx_rate_per_1k": 183.12442319345797,
       "sdoh_score": 50.595238095238095
     },
     {
       "risk_rank": 9,
-      "state_name": "Missouri",
-      "risk_score": 51.1238687700036,
-      "opioid_death_rate_per_100k": 23.039894450830808,
-      "rx_rate_per_1k": 272.72670864249136,
-      "sdoh_score": 50.595238095238095
+      "state_name": "New Mexico",
+      "risk_score": 51.039890454128724,
+      "opioid_death_rate_per_100k": 25.369321528015217,
+      "rx_rate_per_1k": 150.00183593774216,
+      "sdoh_score": 89.28571428571428
     },
     {
       "risk_rank": 10,
-      "state_name": "New Mexico",
-      "risk_score": 50.87443730609333,
-      "opioid_death_rate_per_100k": 25.369321528015217,
-      "rx_rate_per_1k": 156.17249421918044,
-      "sdoh_score": 89.28571428571428
+      "state_name": "Missouri",
+      "risk_score": 50.5477639879831,
+      "opioid_death_rate_per_100k": 23.039894450830808,
+      "rx_rate_per_1k": 254.99137840944718,
+      "sdoh_score": 50.595238095238095
     }
   ],
   "change_2019_2020_pct": {
@@ -242,28 +242,28 @@
   "top_specialties": [
     {
       "prescriber_type": "Family Practice",
-      "claims": 13569263.0,
-      "prescribers": 66821
+      "claims": 13034864.0,
+      "prescribers": 65519
     },
     {
       "prescriber_type": "Internal Medicine",
-      "claims": 10416615.0,
-      "prescribers": 52781
+      "claims": 10005294.0,
+      "prescribers": 51696
     },
     {
       "prescriber_type": "Nurse Practitioner",
-      "claims": 8986152.0,
-      "prescribers": 62073
+      "claims": 8442366.0,
+      "prescribers": 54714
     },
     {
       "prescriber_type": "Physician Assistant",
-      "claims": 5117543.0,
-      "prescribers": 39303
+      "claims": 4936205.0,
+      "prescribers": 37698
     },
     {
       "prescriber_type": "Pain Management",
-      "claims": 2728804.0,
-      "prescribers": 2209
+      "claims": 2665379.0,
+      "prescribers": 2183
     }
   ]
 }

@@ -1,107 +1,106 @@
 prescriber_type,claims,prescribers,claims_per_prescriber
-Family Practice,13569263.0,66821,203.06884063393244
-Internal Medicine,10416615.0,52781,197.3553930391618
-Nurse Practitioner,8986152.0,62073,144.7674834469093
-Physician Assistant,5117543.0,39303,130.2074396356512
-Pain Management,2728804.0,2209,1235.3119058397465
-Physical Medicine and Rehabilitation,2695629.0,4852,555.570692497939
-Anesthesiology,2648152.0,2586,1024.0340293890179
-Interventional Pain Management,2394261.0,1449,1652.3540372670807
-Orthopedic Surgery,2037436.0,15843,128.60165372719814
-Neurology,1259080.0,8831,142.5750198165553
-Rheumatology,913810.0,3373,270.9190631485325
-Emergency Medicine,853141.0,20472,41.67355412270418
-General Practice,649951.0,2688,241.79724702380952
-Dentist,648839.0,19584,33.131076388888886
-Hematology-Oncology,548187.0,5556,98.6657667386609
-General Surgery,520442.0,11358,45.821623525268535
-Psychiatry,336996.0,7070,47.66562942008487
-Oral Surgery (Dentist only),317529.0,3966,80.06278366111951
-Urology,304306.0,5778,52.66632052613361
-Geriatric Medicine,252639.0,1313,192.4135567402894
-Neurosurgery,199221.0,1995,99.86015037593985
-Podiatry,190169.0,4936,38.52694489465154
-Medical Oncology,168341.0,1913,87.99843178254051
-Hospice and Palliative Care,136526.0,670,203.77014925373135
-Student in an Organized Health Care Education/Training Program,134908.0,5578,24.18572965220509
-Hospitalist,114608.0,2312,49.57093425605537
-Otolaryngology,105525.0,3688,28.6130694143167
-Cardiology,99880.0,1288,77.54658385093168
+Family Practice,13034864.0,65519,198.94784718936492
+Internal Medicine,10005294.0,51696,193.5409702878366
+Nurse Practitioner,8442366.0,54714,154.29992323719705
+Physician Assistant,4936205.0,37698,130.94076608838665
+Pain Management,2665379.0,2183,1220.9706825469536
+Physical Medicine and Rehabilitation,2647146.0,4797,551.8336460287679
+Anesthesiology,2592697.0,2547,1017.9414998036906
+Interventional Pain Management,2351181.0,1442,1630.5
+Orthopedic Surgery,2035509.0,15838,128.52058340699583
+Rheumatology,905456.0,3367,268.92070092070094
+Emergency Medicine,836542.0,20382,41.04317535079973
+Dentist,648737.0,19581,33.13094326132475
+General Practice,625260.0,2570,243.29182879377433
+Neurology,593092.0,3864,153.49171842650102
+Hematology-Oncology,547427.0,5555,98.54671467146714
+General Surgery,514980.0,11296,45.58958923512748
+Oral Surgery (Dentist only),317153.0,3963,80.02851375220793
+Urology,304128.0,5774,52.67197783165916
+Geriatric Medicine,242082.0,1298,186.50385208012327
+Neurosurgery,196574.0,1970,99.78375634517766
+Podiatry,190018.0,4936,38.496353322528364
+Medical Oncology,168182.0,1910,88.05340314136126
+Hospice and Palliative Care,135008.0,666,202.71471471471472
+Student in an Organized Health Care Education/Training Program,130089.0,5330,24.406941838649157
+Hospitalist,108717.0,2270,47.89295154185022
+Otolaryngology,102835.0,3646,28.204882062534285
 Hand Surgery,97298.0,1200,81.08166666666666
-Nephrology,93754.0,1601,58.55965021861336
-Plastic and Reconstructive Surgery,74024.0,1984,37.310483870967744
-Sports Medicine,72251.0,671,107.67660208643815
+Cardiology,96553.0,1256,76.8734076433121
+Nephrology,90929.0,1580,57.55
+Plastic and Reconstructive Surgery,73576.0,1981,37.140837960625944
+Sports Medicine,71600.0,668,107.18562874251496
 Maxillofacial Surgery,68442.0,710,96.39718309859155
-Vascular Surgery,67174.0,1459,46.04112405757368
-Pulmonary Disease,66772.0,879,75.96359499431172
-Dermatology,65538.0,1035,63.321739130434786
-Obstetrics & Gynecology,64155.0,1797,35.701168614357265
-Certified Clinical Nurse Specialist,63379.0,625,101.4064
-Pediatric Medicine,62882.0,626,100.45047923322684
-Osteopathic Manipulative Medicine,61070.0,288,212.04861111111111
-Infectious Disease,51329.0,749,68.53004005340453
-Psychiatry & Neurology,51117.0,1392,36.72198275862069
-Ophthalmology,48131.0,1010,47.654455445544556
-Pharmacist,46112.0,160,288.2
-Gastroenterology,39670.0,1021,38.854064642507346
-Addiction Medicine,38518.0,152,253.4078947368421
-Radiation Oncology,36427.0,1177,30.949022939677146
-Pain Medicine,32795.0,58,565.4310344827586
-Hematology,28583.0,290,98.56206896551724
-Specialist,28329.0,253,111.97233201581028
-Endocrinology,28186.0,498,56.59839357429719
-Colorectal Surgery (Proctology),25312.0,751,33.70439414114514
-Orthopaedic Surgery,25193.0,688,36.61773255813954
+Vascular Surgery,67026.0,1458,45.97119341563786
+Dermatology,65395.0,1031,63.42870999030068
+Pulmonary Disease,64519.0,857,75.28471411901984
+Psychiatry,59285.0,726,81.65977961432507
+Osteopathic Manipulative Medicine,58976.0,280,210.62857142857143
+Obstetrics & Gynecology,58827.0,1712,34.36156542056075
+Pediatric Medicine,56507.0,518,109.08687258687259
+Infectious Disease,49683.0,727,68.33975240715269
+Certified Clinical Nurse Specialist,49568.0,303,163.59075907590758
+Ophthalmology,47254.0,981,48.16921508664628
+Pharmacist,45217.0,149,303.4697986577181
+Gastroenterology,38603.0,997,38.71915747241725
+Radiation Oncology,36403.0,1176,30.954931972789115
+Pain Medicine,31772.0,53,599.4716981132076
+Addiction Medicine,30183.0,74,407.8783783783784
+Hematology,28572.0,289,98.86505190311419
+Specialist,25758.0,216,119.25
+Colorectal Surgery (Proctology),25273.0,751,33.65246338215712
+Orthopaedic Surgery,25020.0,680,36.794117647058826
 Oral & Maxillofacial Surgery,23560.0,331,71.17824773413898
-Preventive Medicine,23292.0,135,172.53333333333333
-Thoracic Surgery,20413.0,484,42.175619834710744
-Neuropsychiatry,19883.0,216,92.05092592592592
-Diagnostic Radiology,19295.0,197,97.94416243654823
-Gynecological Oncology,17858.0,422,42.317535545023695
-Family Medicine,17461.0,169,103.31952662721893
-Certified Registered Nurse Anesthetist (CRNA),14524.0,56,259.35714285714283
-Registered Nurse,14022.0,126,111.28571428571429
-Interventional Radiology,13850.0,116,119.39655172413794
+Endocrinology,21056.0,342,61.567251461988306
+Preventive Medicine,20949.0,110,190.44545454545454
+Thoracic Surgery,20323.0,483,42.076604554865426
+Diagnostic Radiology,18393.0,186,98.88709677419355
+Gynecological Oncology,17815.0,420,42.416666666666664
+Psychiatry & Neurology,16426.0,260,63.176923076923075
+Family Medicine,14882.0,128,116.265625
+Certified Registered Nurse Anesthetist (CRNA),14264.0,53,269.1320754716981
+Interventional Radiology,13602.0,114,119.3157894736842
 Surgical Oncology,13290.0,357,37.226890756302524
-Critical Care (Intensivists),11245.0,125,89.96
-Clinical Cardiac Electrophysiology,11007.0,290,37.9551724137931
+Neuropsychiatry,13011.0,48,271.0625
+Registered Nurse,12849.0,102,125.97058823529412
+Critical Care (Intensivists),11067.0,124,89.25
+Clinical Cardiac Electrophysiology,10888.0,289,37.674740484429066
 Cardiac Surgery,10268.0,229,44.838427947598255
-Allergy/ Immunology,8975.0,90,99.72222222222223
-Pathology,5141.0,27,190.40740740740742
-Plastic Surgery,4919.0,234,21.021367521367523
-Sleep Medicine,4329.0,93,46.54838709677419
-Interventional Cardiology,3968.0,116,34.206896551724135
-Geriatric Psychiatry,3855.0,43,89.65116279069767
+Allergy/ Immunology,8313.0,82,101.3780487804878
+Plastic Surgery,4858.0,233,20.84978540772532
+Pathology,4369.0,19,229.94736842105263
 Hematopoietic Cell Transplantation and Cellular Therapy,3749.0,50,74.98
-Neurological Surgery,3386.0,109,31.06422018348624
-Undefined Physician type,2682.0,42,63.857142857142854
-Certified Nurse Midwife,1948.0,23,84.69565217391305
-Naturopath,1695.0,61,27.78688524590164
-Nuclear Medicine,1485.0,13,114.23076923076923
-Surgery,1256.0,62,20.258064516129032
-Clinic or Group Practice,1229.0,9,136.55555555555554
+Interventional Cardiology,3729.0,111,33.5945945945946
+Neurological Surgery,3296.0,107,30.80373831775701
+Sleep Medicine,3111.0,74,42.04054054054054
+Undefined Physician type,2215.0,38,58.28947368421053
+Geriatric Psychiatry,1991.0,4,497.75
+Certified Nurse Midwife,1798.0,19,94.63157894736842
+Naturopath,1601.0,57,28.087719298245613
+Nuclear Medicine,1368.0,12,114.0
+Surgery,1245.0,61,20.40983606557377
+Clinic or Group Practice,1202.0,9,133.55555555555554
 Undersea and Hyperbaric Medicine,1178.0,22,53.54545454545455
-Legal Medicine,1164.0,17,68.47058823529412
-"Neuromusculoskeletal Medicine, Sports Medicine",1128.0,10,112.8
-Clinic/Center,1121.0,22,50.95454545454545
-Licensed Practical Nurse,854.0,3,284.6666666666667
-"Psychologist, Clinical",773.0,24,32.208333333333336
-Counselor,713.0,10,71.3
-Thoracic Surgery (Cardiothoracic Vascular Surgery),683.0,21,32.523809523809526
-General Acute Care Hospital,408.0,10,40.8
-Peripheral Vascular Disease,370.0,8,46.25
-Colon & Rectal Surgery,362.0,20,18.1
+Legal Medicine,1099.0,16,68.6875
+"Neuromusculoskeletal Medicine, Sports Medicine",1078.0,9,119.77777777777777
+Clinic/Center,1072.0,21,51.04761904761905
+Licensed Practical Nurse,816.0,2,408.0
+Thoracic Surgery (Cardiothoracic Vascular Surgery),545.0,17,32.05882352941177
+General Acute Care Hospital,380.0,9,42.22222222222222
+Colon & Rectal Surgery,335.0,19,17.63157894736842
 Micrographic Dermatologic Surgery,335.0,8,41.875
+Peripheral Vascular Disease,268.0,8,33.5
 Hospital,244.0,1,244.0
 "Medical Genetics, Ph.D. Medical Genetics",227.0,3,75.66666666666667
 Physical Therapist in Private Practice,223.0,3,74.33333333333333
-Advanced Heart Failure and Transplant Cardiology,220.0,14,15.714285714285714
+Advanced Heart Failure and Transplant Cardiology,208.0,13,16.0
 Chiropractic,197.0,4,49.25
-Personal Emergency Response Attendant,153.0,3,51.0
+Personal Emergency Response Attendant,123.0,1,123.0
 Ambulatory Surgical Center,115.0,4,28.75
 Military Health Care Provider,113.0,5,22.6
 Dental Assistant,111.0,1,111.0
 Optometry,104.0,6,17.333333333333332
+"Psychologist, Clinical",103.0,5,20.6
 Independent Medical Examiner,101.0,2,50.5
 Health Maintenance Organization,94.0,2,47.0
 Rehabilitation Practitioner,84.0,1,84.0
@@ -109,16 +108,13 @@ Unknown Supplier/Provider Specialty,75.0,2,37.5
 Program of All-Inclusive Care for the Elderly (PACE) Provider Organization,66.0,1,66.0
 Physical Medicine & Rehabilitation,64.0,2,32.0
 Medical Genetics and Genomics,55.0,3,18.333333333333332
+Counselor,51.0,2,25.5
 Dental Hygienist,37.0,1,37.0
-Radiology,35.0,1,35.0
 Case Manager/Care Coordinator,32.0,1,32.0
 Slide Preparation Facility,30.0,1,30.0
-Community Health Worker,30.0,1,30.0
 Marriage & Family Therapist,26.0,1,26.0
-Durable Medical Equipment & Medical Supplies,24.0,2,12.0
 Speech Language Pathologist,24.0,1,24.0
-Respite Care,24.0,1,24.0
-Licensed Clinical Social Worker,19.0,1,19.0
-,16.0,1,16.0
+Durable Medical Equipment & Medical Supplies,24.0,2,12.0
 "Assistant, Podiatric",13.0,1,13.0
+Community Health Worker,12.0,1,12.0
 Behavior Analyst,11.0,1,11.0
